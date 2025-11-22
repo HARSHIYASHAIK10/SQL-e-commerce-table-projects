@@ -1,4 +1,4 @@
-create table customers(
+CREATE TABLE customers (
     customer_id INTEGER PRIMARY KEY,
     customer_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
@@ -6,14 +6,14 @@ create table customers(
     signup_date DATE
 );
 
-create table products(
+CREATE TABLE products (
     product_id INTEGER PRIMARY KEY,
     product_name VARCHAR(100) NOT NULL,
     category VARCHAR(50),
     price DECIMAL(10,2) NOT NULL CHECK (price >= 0)
 );
 
-create table orders(
+CREATE TABLE orders (
     order_id INTEGER PRIMARY KEY,
     customer_id INTEGER NOT NULL,
     order_date DATE NOT NULL,
@@ -21,7 +21,7 @@ create table orders(
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
-create table order_items(
+CREATE TABLE order_items (
     order_item_id INTEGER PRIMARY KEY,
     order_id INTEGER NOT NULL,
     product_id INTEGER NOT NULL,
@@ -31,7 +31,7 @@ create table order_items(
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
 
-create table payments(
+CREATE TABLE payments (
     payment_id INTEGER PRIMARY KEY,
     order_id INTEGER NOT NULL,
     payment_date DATE,
@@ -39,4 +39,3 @@ create table payments(
     payment_method VARCHAR(30),
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
-  
